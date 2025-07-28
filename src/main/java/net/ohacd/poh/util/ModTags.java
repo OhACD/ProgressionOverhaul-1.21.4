@@ -19,10 +19,15 @@ public class ModTags {
 
     public static class Items {
         public static final TagKey<Item> SHARP_TOOL_REPAIR = createTag("sharp_tool_repair");
+        public static final TagKey<Item> PEBBLES_TAG = createTag("pebbles_tag");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(ProgressionOverhaul.MOD_ID, name));
         }
+    }
+
+    public static void registerModTags() {
+        ProgressionOverhaul.LOGGER.info("Registering Mod Tags for " + ProgressionOverhaul.MOD_ID);
     }
 
 }

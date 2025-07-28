@@ -19,7 +19,7 @@ public class ModItems {
     public static final Item PEBBLES = registerItem("pebbles", Item::new, new Item.Settings());
     public static final Item GRANITE_PEBBLES = registerItem("granite_pebbles", Item::new, new Item.Settings());
     public static final Item DIORITE_PEBBLES = registerItem("diorite_pebbles", Item::new, new Item.Settings());
-    public static final Item ANDESITE_PEBBLES = registerItem("andesite_pebbles.json", Item::new, new Item.Settings());
+    public static final Item ANDESITE_PEBBLES = registerItem("andesite_pebbles", Item::new, new Item.Settings());
     public static final Item BARK = registerItem("bark", Item::new, new Item.Settings());
     public static final Item LOOSE_DIRT = registerItem("loose_dirt", Item::new, new Item.Settings());
 
