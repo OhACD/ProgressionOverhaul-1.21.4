@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
+//Mixin doesn't work, ToolMaterial class is now a record :(
 @Mixin(ToolMaterial.class)
 public class WoodToolMaterialMixin {
     @Shadow @Final public static ToolMaterial WOOD;
