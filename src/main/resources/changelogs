@@ -1,0 +1,34 @@
+🌱 Point of Humanity – v0.1.0: Foundations of Survival
+🔨 Reworked Early Progression
+Removed Stone Sword – no more quick leap to power
+
+Stone Tools require String or Plant Fiber to craft
+
+Wooden Sword rebalanced for reduced early-game strength
+
+Mining without tools is now slower, rewarding progression
+
+🌿 New Resources
+Pebbles now drop from dirt, grass, and mud
+
+Sharp Stone can be crafted from Pebbles and used as a primitive blade
+
+Cobblestone ⇄ Pebbles crafting loop introduced
+
+Plant Fiber added – gathered from grass and used in early tool recipes
+
+🪨 Smarter Block Drops
+Iron Ore behavior split:
+
+Drops Raw Iron when mined with sub-iron tools
+
+Drops itself when mined with iron-tier or better tools
+
+Dirt Clumps added – drop from dirt variants with weak tools and can be crafted into dirt blocks
+
+🧱 Crafting System Tweaks
+Furnace removed to slow technological acceleration
+
+Chainmail Armor is now craftable using Chains
+
+Chains are now craftable from 3 iron nuggets

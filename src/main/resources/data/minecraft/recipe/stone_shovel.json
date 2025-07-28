@@ -6,8 +6,7 @@
     "minecraft:string"
   ],
   "result": {
-    "id": "minecraft:stone_axe",
+    "id": "minecraft:stone_shovel",
     "count": 1
-  },
-  "group": "poh"
+  }
 }

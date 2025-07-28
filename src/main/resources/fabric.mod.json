@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "poh",
-	"version": "Alpha-0.1.0",
+	"version": "Alpha-0.1.0 RC-1",
 	"name": "Progression Overhaul",
 	"description": "A Complete faithful rework to minecraft progression!",
 	"authors": [
@@ -12,7 +12,7 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/poh/icon.png",
+	"icon": "icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

@@ -18,6 +18,7 @@ public class ModItems {
     public static final Item DRY_GRASS = registerItem("dry_grass", Item::new, new Item.Settings());
     public static final Item PEBBLES = registerItem("pebbles", Item::new, new Item.Settings());
     public static final Item BARK = registerItem("bark", Item::new, new Item.Settings());
+    public static final Item LOOSE_DIRT = registerItem("loose_dirt", Item::new, new Item.Settings());
 
     //Tools Registry
     public static final Item SHARP_STONE = registerItem(

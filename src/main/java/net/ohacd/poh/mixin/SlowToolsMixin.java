@@ -19,12 +19,12 @@ public class SlowToolsMixin {
 		if (!(item instanceof MiningToolItem)) {
 			cir.setReturnValue(cir.getReturnValue() * 0.3f);
 		}else if (item == Items.STONE_PICKAXE || item == Items.STONE_AXE || item == Items.STONE_SHOVEL) {
-			cir.setReturnValue(cir.getReturnValue() * 0.45f);
+			cir.setReturnValue(cir.getReturnValue() * 0.5f);
 			}
 		else if (item == Items.IRON_PICKAXE || item == Items.IRON_AXE || item == Items.IRON_SHOVEL) {
 			cir.setReturnValue(cir.getReturnValue() * 0.75f);
 			}else if (item == Items.DIAMOND_PICKAXE || item == Items.DIAMOND_AXE || item == Items.DIAMOND_SHOVEL) {
-				cir.setReturnValue(cir.getReturnValue() * 0.90f);
+				cir.setReturnValue(cir.getReturnValue() * 0.9f);
 				}
 	}
 }
