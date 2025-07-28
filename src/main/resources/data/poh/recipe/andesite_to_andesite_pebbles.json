@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:andesite"
+  ],
+  "result": {
+    "id": "poh:andesite_pebbles",
+    "count": 4
+  }
+}

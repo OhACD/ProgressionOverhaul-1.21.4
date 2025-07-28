@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "poh:item/sharp_stone"
+    "layer0": "poh:item/granite_pebbles"
   }
 }

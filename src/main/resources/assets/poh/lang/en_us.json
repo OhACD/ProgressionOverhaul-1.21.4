@@ -3,5 +3,9 @@
   "item.poh.dry_grass": "Dry grass",
   "item.poh.pebbles": "Pebbles",
   "item.poh.bark": "Bark",
-  "item.poh.sharp_stone": "Sharp Stone"
+  "item.poh.sharp_stone": "Sharp Stone",
+  "item.poh.loose_dirt": "Loose Dirt",
+  "item.poh.granite_pebbles": "Granite Pebbles",
+  "item.poh.diorite_pebbles": "Diorite Pebbles",
+  "item.poh.andesite_pebbles": "Andesite Pebbles"
 }

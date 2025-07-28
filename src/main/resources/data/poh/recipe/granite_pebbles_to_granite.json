@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "poh:granite_pebbles",
+    "poh:granite_pebbles",
+    "poh:granite_pebbles",
+    "poh:granite_pebbles"
+  ],
+  "result": {
+    "id": "minecraft:granite",
+    "count": 1
+  }
+}
