@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "poh:dry_grass",
+    "poh:dry_grass"
+  ],
+  "result": {
+    "id": "poh:plant_fiber",
+    "count": 1
+  },
+  "group": "poh"
+}

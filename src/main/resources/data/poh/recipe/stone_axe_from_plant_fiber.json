@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:cobblestone",
+    "minecraft:cobblestone",
+    "minecraft:stick",
+    "poh:plant_fiber"
+  ],
+  "result": {
+    "id": "minecraft:stone_axe",
+    "count": 1
+  },
+  "group": "poh"
+}

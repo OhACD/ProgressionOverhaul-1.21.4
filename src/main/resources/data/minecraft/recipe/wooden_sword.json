@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:stick",
+    "minecraft:stick"
+  ],
+  "result": {
+    "id": "minecraft:wooden_sword",
+    "count": 1
+  },
+  "group": "poh"
+}

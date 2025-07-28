@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "poh:pebbles",
+    "poh:pebbles",
+    "poh:pebbles",
+    "poh:pebbles"
+  ],
+  "result": {
+    "id": "minecraft:cobblestone",
+    "count": 1
+  },
+  "group": "poh"
+}
