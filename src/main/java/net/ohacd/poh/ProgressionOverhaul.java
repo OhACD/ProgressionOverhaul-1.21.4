@@ -17,8 +17,10 @@ public class ProgressionOverhaul implements ModInitializer {
 	@Override
 	public void onInitialize() {
         ModItems.registerModItems();
-        ModLootTableModifiers.registerLootTables();
         ModBlocks.registerModBlocks();
+
+        ModLootTableModifiers.registerLootTables();
+
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
 	}

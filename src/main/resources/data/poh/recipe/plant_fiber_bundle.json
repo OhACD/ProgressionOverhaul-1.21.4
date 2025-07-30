@@ -10,7 +10,7 @@
     "/": "minecraft:leather"
   },
   "result": {
-    "id": "minecraft:stone_pickaxe",
+    "id": "minecraft:bundle",
     "count": 1
   }
 }
