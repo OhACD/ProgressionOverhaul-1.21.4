@@ -103,6 +103,6 @@ public class ModLootTableModifiers {
     public static void registerLootTables() {
         modifyLootTables();
         replaceLootTables();
-        ProgressionOverhaul.LOGGER.info("Registering Mod Recipes for" + ProgressionOverhaul.MOD_ID);
+        ProgressionOverhaul.LOGGER.info("Registering Mod Recipes for " + ProgressionOverhaul.MOD_ID);
     }
 }

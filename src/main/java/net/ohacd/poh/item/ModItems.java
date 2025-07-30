@@ -44,7 +44,7 @@ public class ModItems {
     }
 
     public static void registerModItems(){
-        ProgressionOverhaul.LOGGER.info("Registering Mod Items for" + ProgressionOverhaul.MOD_ID);
+        ProgressionOverhaul.LOGGER.info("Registering Mod Items for " + ProgressionOverhaul.MOD_ID);
     }
 }
 
