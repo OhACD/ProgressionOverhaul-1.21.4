@@ -9,7 +9,8 @@ import net.ohacd.poh.ProgressionOverhaul;
 import net.ohacd.poh.block.ModBlocks;
 import net.ohacd.poh.block.entity.custom.ClayFurnaceBlockEntity;
 
-public class ModBLockEntity {
+public class ModBlockEntities {
+
     public static final BlockEntityType<ClayFurnaceBlockEntity> CLAY_FURNACE_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(ProgressionOverhaul.MOD_ID, "clay_furnace_be"),
                     FabricBlockEntityTypeBuilder.create(ClayFurnaceBlockEntity::new, ModBlocks.CLAY_FURNACE).build(null));

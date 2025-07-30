@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 public class ModBlocks {
 
-    public static final Block CLAY_FURNACE= registerBlock("clay_furnace", ClayFurnaceBlock::new);
+      public static final Block CLAY_FURNACE = registerBlock("clay_furnace", ClayFurnaceBlock::new);
 
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> function) {
         Block toRegister = function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(ProgressionOverhaul.MOD_ID, name))));

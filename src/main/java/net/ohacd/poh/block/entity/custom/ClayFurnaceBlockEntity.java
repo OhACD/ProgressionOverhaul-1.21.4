@@ -2,11 +2,10 @@ package net.ohacd.poh.block.entity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -22,24 +21,24 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.ohacd.poh.ProgressionOverhaul;
-import net.ohacd.poh.block.entity.ModBLockEntity;
+import net.ohacd.poh.block.entity.ImplementedInventory;
+import net.ohacd.poh.block.entity.ModBlockEntities;
 import net.ohacd.poh.item.ModItems;
+import net.ohacd.poh.screen.custom.ClayFurnaceScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
-public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
+public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
 
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
-    private static final int FUEL_SLOT = 2;
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
     private int maxProgress = 72;
 
     public ClayFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBLockEntity.CLAY_FURNACE_BE, pos, state);
+        super(ModBlockEntities.CLAY_FURNACE_BE, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -66,6 +65,11 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     @Override
+    public DefaultedList<ItemStack> getItems() {
+        return inventory;
+    }
+
+    @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return this.pos;
     }
@@ -77,7 +81,7 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return
+        return new ClayFurnaceScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
     @Override
@@ -108,14 +112,33 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
         }
     }
 
-    private boolean hasRecipe() {
-        Optional<RecipeEntry<ClayFurnaceRecipe>> recipe = getCurrentRecipe();
-        if(recipe.isEmpty()) {
-            return false;
-        }
+    private void resetProgress() {
+        this.progress = 0;
+        this.maxProgress = 72;
+    }
 
-        ItemStack output = recipe.get().value().output();
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    private void craftItem() {
+        ItemStack output = new ItemStack(ModItems.BARK, 8);
+
+        this.removeStack(INPUT_SLOT, 1);
+        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
+                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+
+    }
+
+    private boolean hasCraftingFinished() {
+        return this.progress >= this.maxProgress;
+    }
+
+    private void increaseCraftingProgress() {
+        this.progress++;
+    }
+
+    private boolean hasRecipe() {
+        Item input = Items.IRON_ORE;
+        ItemStack output = new ItemStack(ModItems.BARK, 8);
+
+        return this.getStack(INPUT_SLOT).isOf(input) && canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
@@ -123,6 +146,10 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private boolean canInsertAmountIntoOutputSlot(int count) {
+        int maxCount = this.getStack(OUTPUT_SLOT).isEmpty() ? 64 : this.getStack(OUTPUT_SLOT).getMaxCount();
+        int currentCount = this.getStack(OUTPUT_SLOT).getCount();
+
+        return maxCount >= currentCount + count;
     }
 
     @Nullable

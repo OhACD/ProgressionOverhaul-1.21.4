@@ -16,7 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.ohacd.poh.block.entity.ModBLockEntity;
+import net.ohacd.poh.block.entity.ModBlockEntities;
 import net.ohacd.poh.block.entity.custom.ClayFurnaceBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,7 +61,7 @@ public class ClayFurnaceBlock extends BlockWithEntity implements BlockEntityProv
             return null;
         }
 
-        return validateTicker(type, ModBLockEntity.CLAY_FURNACE_BE,
+        return validateTicker(type, ModBlockEntities.CLAY_FURNACE_BE,
                 (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 }

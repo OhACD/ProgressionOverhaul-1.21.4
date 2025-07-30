@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting",
+  "pattern": [],
+  "result": {
+    "id": "minecraft:air"
+  }
+}
