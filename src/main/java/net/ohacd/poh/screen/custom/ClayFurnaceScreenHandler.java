@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.ohacd.poh.block.entity.custom.ClayFurnaceBlockEntity;
@@ -19,20 +20,29 @@ public class ClayFurnaceScreenHandler extends ScreenHandler {
     public final ClayFurnaceBlockEntity blockEntity;
 
     public ClayFurnaceScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(2));
+        this((ClayFurnaceBlockEntity) inventory.player.getWorld().getBlockEntity(pos), syncId, inventory);
+    }
+
+    public ClayFurnaceScreenHandler(ClayFurnaceBlockEntity blockEntity, int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, blockEntity, blockEntity.getPropertyDelegate());
     }
 
     public ClayFurnaceScreenHandler(int syncId, PlayerInventory playerInventory,
-                                    BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
+                                    ClayFurnaceBlockEntity blockEntity, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlers.CLAY_FURNACE_SCREEN_HANDLER, syncId);
-        this.inventory = ((Inventory) blockEntity);
-        this.blockEntity = ((ClayFurnaceBlockEntity) blockEntity);
-        this.propertyDelegate = arrayPropertyDelegate;
+        this.inventory = blockEntity;
+        this.blockEntity = blockEntity;
+        this.propertyDelegate = propertyDelegate;
 
-        this.addSlot(new Slot(inventory, 0, 53, 34));
-        this.addSlot(new Slot(inventory, 1, 104, 34));
+        // Furnace slots
+        this.addSlot(new Slot(inventory, 0, 56, 17)); // Input
+        this.addSlot(new Slot(inventory, 1, 56, 53)); // Fuel
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 2, 116, 35)); // Output
 
-        addProperties(arrayPropertyDelegate);
+        addPlayerInventory(playerInventory);
+        addPlayerHotbar(playerInventory);
+
+        addProperties(propertyDelegate);
     }
 
     public boolean isCrafting() {

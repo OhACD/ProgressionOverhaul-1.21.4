@@ -34,10 +34,4 @@ public class ClayFurnaceScreen extends HandledScreen<ClayFurnaceScreenHandler> {
                     handler.getScaledArrowProgress(), 16, 24, 16);
         }
     }
-
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-        drawMouseoverTooltip(context, mouseX, mouseY);
-    }
 }

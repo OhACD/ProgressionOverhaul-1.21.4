@@ -18,6 +18,9 @@
 		"main": [
 			"net.ohacd.poh.ProgressionOverhaul"
 		],
+		"client": [
+			"net.ohacd.poh.ProgressionOverhaulClient"
+		],
 		"fabric-datagen": [
 			"net.ohacd.poh.ProgressionOverhaulDataGenerator"
 		]
