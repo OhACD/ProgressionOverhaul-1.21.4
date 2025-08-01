@@ -1,0 +1,7 @@
+{
+  "type": "poh:clay_furnace",
+  "ingredient": "minecraft:raw_iron",
+  "result": {
+    "id": "minecraft:iron_nugget"
+  }
+}

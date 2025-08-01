@@ -20,6 +20,7 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> SHARP_TOOL_REPAIR = createTag("sharp_tool_repair");
         public static final TagKey<Item> PEBBLES_TAG = createTag("pebbles_tag");
+        public static final TagKey<Item> CLAY_FUEL = createTag("clay_fuel");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(ProgressionOverhaul.MOD_ID, name));

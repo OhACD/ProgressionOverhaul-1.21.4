@@ -12,10 +12,13 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +26,15 @@ import net.minecraft.world.World;
 import net.ohacd.poh.block.entity.ImplementedInventory;
 import net.ohacd.poh.block.entity.ModBlockEntities;
 import net.ohacd.poh.item.ModItems;
+import net.ohacd.poh.recipe.ModRecipes;
+import net.ohacd.poh.recipe.custom.ClayFuranceRecipe;
+import net.ohacd.poh.recipe.custom.ClayFurnaceRecipeInput;
 import net.ohacd.poh.screen.custom.ClayFurnaceScreenHandler;
+import net.ohacd.poh.util.ModTags;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
+import java.util.Set;
 
 public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
@@ -132,9 +142,46 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
         markDirty(world, pos, state);
     }
 
+    private boolean hasRecipe() {
+        Optional<RecipeEntry<ClayFuranceRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return false;
+        }
+
+        ItemStack output = recipe.get().value().output();
+
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    }
+
+    private Optional<RecipeEntry<ClayFuranceRecipe>> getCurrentRecipe() {
+        return ((ServerWorld) this.getWorld()).getRecipeManager()
+                .getFirstMatch(ModRecipes.CLAY_FURNACE_TYPE, new ClayFurnaceRecipeInput(inventory.get(INPUT_SLOT)),
+                        this.getWorld());
+    }
+
+//    //List of Items that can be used as fuel
+//    private static final Set<Item> FUEL_ITEMS = Set.of(
+//            ModItems.BARK,
+//            Items.STICK,
+//            Items.BAMBOO,
+//            Items.BIRCH_LOG,
+//            Items.OAK_LOG,
+//            Items.JUNGLE_LOG,
+//            Items.ACACIA_LOG,
+//            Items.SPRUCE_LOG,
+//            Items.MANGROVE_LOG,
+//            Items.PALE_OAK_LOG
+//
+//
+//
+//    );
+
+
     private void consumeFuel() {
         ItemStack fuelStack = getStack(FUEL_SLOT);
-        if (fuelStack.isOf(ModItems.BARK)) {
+//        Item fuelItem = fuelStack.getItem();
+
+        if (fuelStack.isIn(ModTags.Items.CLAY_FUEL)) {
             burnTime = fuelTime = 150;
             fuelStack.decrement(1);
         }
@@ -142,11 +189,11 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
 
     private boolean canConsumeFuel() {
         ItemStack fuelStack = getStack(FUEL_SLOT);
-        return fuelStack.isOf(ModItems.BARK);
+        return fuelStack.isIn(ModTags.Items.CLAY_FUEL);
     }
 
     private int getFuelTime(ItemStack stack) {
-        return stack.isOf(ModItems.BARK) ? 150 : 0;
+        return stack.isIn(ModTags.Items.CLAY_FUEL) ? 150 : 0;
     }
 
     private void resetProgress() {
@@ -155,7 +202,8 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(Items.IRON_INGOT);
+        Optional<RecipeEntry<ClayFuranceRecipe>> recipe = getCurrentRecipe();
+        ItemStack output = recipe.get().value().output();
 
         this.removeStack(INPUT_SLOT, 1);
         this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
@@ -169,13 +217,6 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
 
     private void increaseCraftingProgress() {
         this.progress++;
-    }
-
-    private boolean hasRecipe() {
-        Item input = Items.IRON_ORE;
-        ItemStack output = new ItemStack(Items.IRON_INGOT);
-
-        return this.getStack(INPUT_SLOT).isOf(input) && canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

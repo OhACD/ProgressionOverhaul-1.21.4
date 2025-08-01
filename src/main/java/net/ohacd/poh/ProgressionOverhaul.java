@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.ohacd.poh.block.ModBlocks;
 import net.ohacd.poh.block.entity.ModBlockEntities;
 import net.ohacd.poh.item.ModItems;
+import net.ohacd.poh.recipe.ModRecipes;
 import net.ohacd.poh.screen.ModScreenHandlers;
 import net.ohacd.poh.util.ModLootTableModifiers;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ public class ProgressionOverhaul implements ModInitializer {
         ModBlocks.registerModBlocks();
 
         ModLootTableModifiers.registerLootTables();
+		ModRecipes.registerRecipes();
 
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();

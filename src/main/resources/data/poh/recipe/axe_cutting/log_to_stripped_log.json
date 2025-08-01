@@ -1,0 +1,8 @@
+{
+  "type": "poh:axe_cutting",
+  "ingredient": "#minecraft:logs",
+  "axe": "#minecraft:axes",
+  "result": {
+    "id": "minecraft:oak_planks"
+  }
+}

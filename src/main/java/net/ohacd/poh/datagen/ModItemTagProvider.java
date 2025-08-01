@@ -2,6 +2,7 @@ package net.ohacd.poh.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.ohacd.poh.item.ModItems;
 import net.ohacd.poh.util.ModTags;
@@ -20,6 +21,19 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ANDESITE_PEBBLES)
                 .add(ModItems.GRANITE_PEBBLES)
                 .add(ModItems.DIORITE_PEBBLES);
+
+        getOrCreateTagBuilder(ModTags.Items.CLAY_FUEL)
+                .add(ModItems.BARK)
+                .add(Items.STICK)
+                .add(Items.BAMBOO)
+                .add(Items.BIRCH_LOG)
+                .add(Items.OAK_LOG)
+                .add(Items.JUNGLE_LOG)
+                .add(Items.ACACIA_LOG)
+                .add(Items.SPRUCE_LOG)
+                .add(Items.MANGROVE_LOG)
+                .add(Items.PALE_OAK_LOG);
+
 
     }
 }
