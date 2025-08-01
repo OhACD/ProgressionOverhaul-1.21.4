@@ -1,8 +1,14 @@
 {
   "type": "poh:axe_cutting",
-  "ingredient": "#minecraft:logs",
-  "axe": "#minecraft:axes",
+  "ingredient": "minecraft:oak_log",
+  "axe": [
+    "minecraft:stone_axe",
+    "minecraft:iron_axe",
+    "minecraft:diamond_axe",
+    "minecraft:netherite_axe"
+  ],
   "result": {
-    "id": "minecraft:oak_planks"
+    "id": "minecraft:stripped_oak_log",
+    "count": 1
   }
 }

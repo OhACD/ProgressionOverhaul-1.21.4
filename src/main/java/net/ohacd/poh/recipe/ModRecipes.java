@@ -33,6 +33,6 @@ public class ModRecipes {
                 }});
 
     public static void registerRecipes() {
-        ProgressionOverhaul.LOGGER.info("Registering Mod Recipes for " + ProgressionOverhaul.MOD_ID);
+        ProgressionOverhaul.LOGGER.info("Registering Custom Recipes for " + ProgressionOverhaul.MOD_ID);
     }
 }

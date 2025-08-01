@@ -9,6 +9,7 @@
     "minecraft:acacia_log",
     "minecraft:spruce_log",
     "minecraft:mangrove_log",
-    "minecraft:pale_oak_log"
+    "minecraft:pale_oak_log",
+    "minecraft:dark_oak_log"
   ]
 }

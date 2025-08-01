@@ -32,7 +32,18 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.ACACIA_LOG)
                 .add(Items.SPRUCE_LOG)
                 .add(Items.MANGROVE_LOG)
-                .add(Items.PALE_OAK_LOG);
+                .add(Items.PALE_OAK_LOG)
+                .add(Items.DARK_OAK_LOG);
+
+        getOrCreateTagBuilder(ModTags.Items.STRIPPED_LOGS)
+                .add(Items.STRIPPED_OAK_LOG)
+                .add(Items.STRIPPED_ACACIA_LOG)
+                .add(Items.STRIPPED_BIRCH_LOG)
+                .add(Items.STRIPPED_SPRUCE_LOG)
+                .add(Items.STRIPPED_DARK_OAK_LOG)
+                .add(Items.STRIPPED_PALE_OAK_LOG)
+                .add(Items.STRIPPED_MANGROVE_LOG);
+
 
 
     }
