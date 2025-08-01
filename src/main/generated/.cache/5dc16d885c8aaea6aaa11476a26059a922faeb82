@@ -1,0 +1,5 @@
+// 1.21.4	-999999999-01-01T00:00:00	Progression Overhaul/Model Definitions
+fe25586e9442292a0c59e5ab2090c70ade5e8dac assets/poh/blockstates/clay_furnace.json
+d3177afad22186b399f24546ec631dfa329665e9 assets/poh/items/clay_furnace.json
+078021c342ced4599aa736727223232c2e3b91bd assets/poh/models/block/clay_furnace.json
+aa90e8c75923b214fab10630b819f00ebf68b3f0 assets/poh/models/block/clay_furnace_on.json
