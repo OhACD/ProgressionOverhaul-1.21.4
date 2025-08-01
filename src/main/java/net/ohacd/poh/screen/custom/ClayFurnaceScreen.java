@@ -27,7 +27,7 @@ public class ClayFurnaceScreen extends HandledScreen<ClayFurnaceScreenHandler> {
 
         context.drawTexture(RenderLayer::getGuiTextured, GUI_TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight, 256, 256);
 
-        renderFlame(context, x, y);
+//        renderFlame(context, x, y);
         renderProgressArrow(context, x, y);
     }
 
@@ -44,17 +44,17 @@ public class ClayFurnaceScreen extends HandledScreen<ClayFurnaceScreenHandler> {
         }
     }
 
-    private void renderFlame(DrawContext context, int x, int y) {
-        int flameHeight = handler.getScaledFuelProgress(); // Scaled from 0–14
-        if (flameHeight > 0) {
-            context.drawTexture(RenderLayer::getGuiTextured,
-                    GUI_TEXTURE,
-                    x + 56, y + 36 + (14 - flameHeight), // screen position
-                    176, 14 - flameHeight,               // source x/y in GUI texture
-                    14, flameHeight,                     // width/height to draw
-                    256, 256);                           // full texture size
-        }
-    }
+//    private void renderFlame(DrawContext context, int x, int y) {
+//        int flameHeight = handler.getScaledFuelProgress(); // Scaled from 0–14
+//        if (flameHeight > 0) {
+//            context.drawTexture(RenderLayer::getGuiTextured,
+//                    GUI_TEXTURE,
+//                    x + 56, y + 36 + (14 - flameHeight), // screen position
+//                    176, 14 - flameHeight,               // source x/y in GUI texture
+//                    14, flameHeight,                     // width/height to draw
+//                    256, 256);                           // full texture size
+//        }
+//    }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {

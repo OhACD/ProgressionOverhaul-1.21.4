@@ -135,7 +135,7 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
     private void consumeFuel() {
         ItemStack fuelStack = getStack(FUEL_SLOT);
         if (fuelStack.isOf(ModItems.BARK)) {
-            burnTime = fuelTime = 450;
+            burnTime = fuelTime = 150;
             fuelStack.decrement(1);
         }
     }
@@ -146,7 +146,7 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private int getFuelTime(ItemStack stack) {
-        return stack.isOf(ModItems.BARK) ? 450 : 0;
+        return stack.isOf(ModItems.BARK) ? 150 : 0;
     }
 
     private void resetProgress() {

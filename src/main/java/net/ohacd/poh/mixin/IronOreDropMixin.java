@@ -26,10 +26,10 @@ public abstract class IronOreDropMixin {
     private static void onDropStacks(BlockState state, World world, BlockPos pos,
                                      @Nullable BlockEntity blockEntity, @Nullable Entity entity,
                                      ItemStack tool, CallbackInfo ci) {
-    	
-    	if (!state.isOf(Blocks.IRON_ORE)) {
-    	    return; // Targets Iron Ore only
-    	}
+
+		if (!state.isOf(Blocks.IRON_ORE) && !state.isOf(Blocks.DEEPSLATE_IRON_ORE)) {
+			return; // Targets only Iron Ore and Deepslate Iron Ore
+		}
     	
     	ci.cancel(); // Cancel vanilla drops
 

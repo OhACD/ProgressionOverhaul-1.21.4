@@ -1,30 +1,46 @@
 package net.ohacd.poh.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.ohacd.poh.block.entity.ModBlockEntities;
 import net.ohacd.poh.block.entity.custom.ClayFurnaceBlockEntity;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.HorizontalFacingBlock;
 
 public class ClayFurnaceBlock extends BlockWithEntity implements BlockEntityProvider {
+
+    public static final EnumProperty<Direction> FACING = HorizontalFacingBlock.FACING;
+    public static final BooleanProperty LIT = Properties.LIT;
+
+
     public static final MapCodec<ClayFurnaceBlock> CODEC = ClayFurnaceBlock.createCodec(ClayFurnaceBlock::new);
 
     public ClayFurnaceBlock(Settings settings) {
         super(settings);
+        this.setDefaultState(this.getStateManager().getDefaultState()
+                .with(FACING, Direction.NORTH)
+                .with(LIT, false));
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING, LIT);
     }
 
     @Override
