@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.*;
@@ -42,29 +41,22 @@ public record AxeCuttingRecipe(Ingredient inputItem, Ingredient axe, ItemStack o
             ItemStack stack = input.getStackInSlot(i);
             if (stack.isEmpty()) continue;
 
-            System.out.println("Checking slot " + i + ": " + stack);
 
             if (this.inputItem.test(stack)) {
-                System.out.println("Matched input item: " + stack);
                 if (foundInput) {
-                    System.out.println("Duplicate input item found");
                     return false;
                 }
                 foundInput = true;
             } else if (this.axe.test(stack)) {
-                System.out.println("Matched axe: " + stack);
                 if (foundAxe) {
-                    System.out.println("Duplicate axe found");
                     return false;
                 }
                 foundAxe = true;
             } else {
-                System.out.println("Unexpected item: " + stack);
                 return false;
             }
         }
 
-        System.out.println("Result: foundInput=" + foundInput + ", foundAxe=" + foundAxe);
         return foundInput && foundAxe;
     }
 

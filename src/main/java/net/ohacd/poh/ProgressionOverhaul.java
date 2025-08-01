@@ -25,5 +25,6 @@ public class ProgressionOverhaul implements ModInitializer {
 
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
+
 	}
 }
