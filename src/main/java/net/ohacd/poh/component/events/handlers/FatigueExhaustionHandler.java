@@ -40,7 +40,7 @@ public class FatigueExhaustionHandler {
         if (cooldown <= 0) {
             applyExhaustion(player, fatigue);
             cooldowns.put(id, TICK_INTERVAL);
-            ProgressionOverhaul.LOGGER.info("fatigue " + value);
+//            ProgressionOverhaul.LOGGER.info("fatigue " + value);
         } else {
             cooldowns.put(id, cooldown - 1);
         }

@@ -9,7 +9,7 @@ import net.ohacd.poh.component.events.handlers.FatigueTriggerHandler;
 import net.ohacd.poh.item.ModItems;
 import net.ohacd.poh.recipe.ModRecipes;
 import net.ohacd.poh.screen.ModScreenHandlers;
-import net.ohacd.poh.tick_handlers.ModTickHandlers;
+import net.ohacd.poh.util.ModTickHandlers;
 import net.ohacd.poh.util.ModLootTableModifiers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

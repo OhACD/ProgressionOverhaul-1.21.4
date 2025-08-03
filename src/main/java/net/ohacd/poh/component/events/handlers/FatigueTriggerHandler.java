@@ -13,9 +13,9 @@ import net.ohacd.poh.component.ModComponents;
 
 public class FatigueTriggerHandler {
     private static final int REST_TICK_THRESHOLD = 2400;
-    private static final float FATIGUE_INCREASE_AMOUNT = 0.0005f;
-    private static final float FATIGUE_COMBAT_AMOUNT = 0.01f;
-    private static final float FATIGUE_BLOCK_BREAK_AMOUNT = 0.005f;
+    private static final float FATIGUE_INCREASE_AMOUNT = 0.0003f;
+    private static final float FATIGUE_COMBAT_AMOUNT = 0.005f;
+    private static final float FATIGUE_BLOCK_BREAK_AMOUNT = 0.0015f;
 
 
     public static void init() {
@@ -31,7 +31,7 @@ public class FatigueTriggerHandler {
                     FatigueComponent fatigue = ModComponents.FATIGUE.get(playerEntity);
                     fatigue.setFatigue(0f);
                     playerEntity.sendMessage(Text.literal("You are no longer tired"), false);
-                    ProgressionOverhaul.LOGGER.info("fatigue reset " + fatigue.getFatigue());
+//                    ProgressionOverhaul.LOGGER.info("fatigue reset " + fatigue.getFatigue());
                 }
             }
             return ActionResult.PASS;
@@ -50,7 +50,7 @@ public class FatigueTriggerHandler {
 
                 // Debug log every 5 seconds
                 if (player.age % 100 == 0) {
-                    ProgressionOverhaul.LOGGER.info("Fatigue for " + player.getName().getString() + ": " + fatigue.getFatigue());
+//                    ProgressionOverhaul.LOGGER.info("Fatigue for " + player.getName().getString() + ": " + fatigue.getFatigue());
                 }
             }
         });

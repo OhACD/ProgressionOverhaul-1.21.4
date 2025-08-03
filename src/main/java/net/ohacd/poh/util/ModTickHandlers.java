@@ -1,4 +1,4 @@
-package net.ohacd.poh.tick_handlers;
+package net.ohacd.poh.util;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.network.ServerPlayerEntity;

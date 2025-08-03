@@ -14,11 +14,12 @@ public class FatigueEvents {
         float level = fatigue.getFatigue();
 
         if (level >= 0.9) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 10, 0));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 200, 0));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 200, 0));
         }
 
         if (level >= 0.8) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 10, 0));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
 
         }
 
@@ -29,6 +30,8 @@ public class FatigueEvents {
         if (level <= 0.2f) {
             player.addStatusEffect(new StatusEffectInstance(
                     StatusEffects.SPEED, 200, 0));
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.HASTE, 200, 0));
         }
     }
 }
