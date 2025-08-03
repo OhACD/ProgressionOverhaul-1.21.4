@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "poh",
-	"version": "Alpha-0.1.2",
+	"version": "Alpha-0.1.3",
 	"name": "Progression Overhaul",
 	"description": "A Complete faithful rework to minecraft progression!",
 	"authors": [
@@ -23,6 +23,9 @@
 		],
 		"fabric-datagen": [
 			"net.ohacd.poh.ProgressionOverhaulDataGenerator"
+		],
+		"cardinal-components": [
+			"net.ohacd.poh.component.ModComponents"
 		]
 	},
 	"mixins": [
@@ -36,5 +39,10 @@
 	},
 	"suggests": {
 		"another-mod": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"poh:fatigue"
+		]
 	}
 }

@@ -4,9 +4,12 @@ import net.fabricmc.api.ModInitializer;
 
 import net.ohacd.poh.block.ModBlocks;
 import net.ohacd.poh.block.entity.ModBlockEntities;
+import net.ohacd.poh.component.events.FatigueEventHooks;
+import net.ohacd.poh.component.events.handlers.FatigueTriggerHandler;
 import net.ohacd.poh.item.ModItems;
 import net.ohacd.poh.recipe.ModRecipes;
 import net.ohacd.poh.screen.ModScreenHandlers;
+import net.ohacd.poh.tick_handlers.ModTickHandlers;
 import net.ohacd.poh.util.ModLootTableModifiers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,5 +29,9 @@ public class ProgressionOverhaul implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
 
+
+		ModTickHandlers.register();
+		FatigueTriggerHandler.init();
+		FatigueEventHooks.register();
 	}
 }
