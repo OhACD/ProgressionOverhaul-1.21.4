@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.ohacd.poh.block.ModBlocks;
 import net.ohacd.poh.block.entity.ModBlockEntities;
+import net.ohacd.poh.command.ModCommands;
 import net.ohacd.poh.component.events.FatigueEventHooks;
 import net.ohacd.poh.component.events.handlers.FatigueTriggerHandler;
 import net.ohacd.poh.item.ModItems;
@@ -22,6 +23,7 @@ public class ProgressionOverhaul implements ModInitializer {
 	public void onInitialize() {
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
+        ModCommands.register();
 
         ModLootTableModifiers.registerLootTables();
 		ModRecipes.registerRecipes();

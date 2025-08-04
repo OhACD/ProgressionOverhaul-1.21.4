@@ -1,5 +1,6 @@
 package net.ohacd.poh.component;
 
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.Identifier;
 import net.ohacd.poh.ProgressionOverhaul;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
@@ -12,9 +13,15 @@ public class ModComponents implements EntityComponentInitializer {
     public static final ComponentKey<FatigueComponent> FATIGUE =
             ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "fatigue"), FatigueComponent.class);
 
+    public static final ComponentKey<SaplingDropOriginComponent> ORIGIN =
+            ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "origin"), SaplingDropOriginComponent.class);
+
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry entityComponentFactoryRegistry) {
         entityComponentFactoryRegistry.registerForPlayers(FATIGUE, playerEntity -> new FatigueComponentImpl(),
                 RespawnCopyStrategy.ALWAYS_COPY);
+
+        entityComponentFactoryRegistry.registerFor(ItemEntity.class,
+                ORIGIN, SaplingDropOriginImpl::new);
     }
 }

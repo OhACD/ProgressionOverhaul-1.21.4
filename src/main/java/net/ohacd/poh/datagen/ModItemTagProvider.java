@@ -44,6 +44,17 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.STRIPPED_PALE_OAK_LOG)
                 .add(Items.STRIPPED_MANGROVE_LOG);
 
+        getOrCreateTagBuilder(ModTags.Items.SAPLINGS_NATURAL)
+                .add(Items.OAK_SAPLING)
+                .add(Items.BIRCH_SAPLING)
+                .add(Items.SPRUCE_SAPLING)
+                .add(Items.ACACIA_SAPLING)
+                .add(Items.DARK_OAK_SAPLING)
+                .add(Items.CHERRY_SAPLING)
+                .add(Items.JUNGLE_SAPLING)
+                .add(Items.PALE_OAK_SAPLING);
+
+
 
 
     }

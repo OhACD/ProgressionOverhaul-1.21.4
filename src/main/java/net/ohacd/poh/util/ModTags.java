@@ -22,6 +22,7 @@ public class ModTags {
         public static final TagKey<Item> PEBBLES_TAG = createTag("pebbles_tag");
         public static final TagKey<Item> CLAY_FUEL = createTag("clay_fuel");
         public static final TagKey<Item> STRIPPED_LOGS = createTag("stripped_logs");
+        public static final TagKey<Item> SAPLINGS_NATURAL = createTag("saplings_natural");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(ProgressionOverhaul.MOD_ID, name));

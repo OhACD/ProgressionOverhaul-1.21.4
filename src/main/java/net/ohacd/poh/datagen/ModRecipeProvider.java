@@ -40,6 +40,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion(hasItem(Items.CLAY), conditionsFromItem(ModBlocks.CLAY_FURNACE))
                         .offerTo(exporter);
 
+                createShapeless(RecipeCategory.MISC, Items.STICK, 1)
+                        .input(ModTags.Items.SAPLINGS_NATURAL)
+                        .criterion(hasItem(Items.OAK_SAPLING), conditionsFromItem(Items.STICK))
+                        .offerTo(exporter);
+
 
             }
         };

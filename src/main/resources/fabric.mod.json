@@ -42,7 +42,8 @@
 	},
 	"custom": {
 		"cardinal-components": [
-			"poh:fatigue"
+			"poh:fatigue",
+			"poh:origin"
 		]
 	}
 }

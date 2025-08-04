@@ -1,5 +1,7 @@
 // 1.21.4	-999999999-01-01T00:00:00	Progression Overhaul/Progression Overhaul Recipes
 bdf56fb527ffb05ee1b6769213ec197c53917297 data/poh/advancement/recipes/misc/clay_furnace.json
+92ecd7ae248637d660193befd9fa5aca95006afc data/poh/advancement/recipes/misc/stick.json
 a4839e00842501ffeff32ba8c77381f021acb3c5 data/poh/advancement/recipes/tools/sharp_stone.json
 cd20f5e6321cf3e055a2cf5fad97024ea4a04797 data/poh/recipe/clay_furnace.json
 b40c27111bc8f5c52002f49da15effafd2b6a6e2 data/poh/recipe/sharp_stone.json
+d473872d592b5d1dfd37a286ebf6407fa9365564 data/poh/recipe/stick.json

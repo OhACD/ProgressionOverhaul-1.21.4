@@ -5,6 +5,7 @@
   "mixins": [
     "CraftingResultSlotMixin",
     "IronOreDropMixin",
+    "LeavesDropMixin",
     "SlowToolsMixin",
     "WoodToolMaterialMixin"
   ],
