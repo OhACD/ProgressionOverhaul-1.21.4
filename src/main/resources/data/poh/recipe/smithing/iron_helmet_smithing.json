@@ -1,0 +1,11 @@
+{
+  "type": "poh:counted_smithing",
+  "template": "minecraft:netherite_upgrade_smithing_template",
+  "base": "minecraft:chainmail_helmet",
+  "addition": "minecraft:iron_ingot",
+  "addition_count": 2,
+  "result": {
+    "id": "minecraft:iron_helmet",
+    "count": 1
+  }
+}

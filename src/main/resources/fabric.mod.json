@@ -44,6 +44,9 @@
 		"cardinal-components": [
 			"poh:fatigue",
 			"poh:origin"
+		],
+		"tick_components": [
+			"poh:origin"
 		]
 	}
 }

@@ -21,7 +21,6 @@ public class ModComponents implements EntityComponentInitializer {
         entityComponentFactoryRegistry.registerForPlayers(FATIGUE, playerEntity -> new FatigueComponentImpl(),
                 RespawnCopyStrategy.ALWAYS_COPY);
 
-        entityComponentFactoryRegistry.registerFor(ItemEntity.class,
-                ORIGIN, SaplingDropOriginImpl::new);
+            entityComponentFactoryRegistry.registerFor(ItemEntity.class, ORIGIN, SaplingDropOriginImpl::new);
     }
 }

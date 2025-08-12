@@ -27,7 +27,7 @@ public abstract class IronOreDropMixin {
                                      @Nullable BlockEntity blockEntity, @Nullable Entity entity,
                                      ItemStack tool, CallbackInfo ci) {
 
-		if (!state.isOf(Blocks.IRON_ORE) && !state.isOf(Blocks.DEEPSLATE_IRON_ORE)) {
+		if (!state.isOf(Blocks.IRON_ORE ) && !state.isOf(Blocks.DEEPSLATE_IRON_ORE)) {
 			return; // Targets only Iron Ore and Deepslate Iron Ore
 		}
     	
@@ -42,8 +42,23 @@ public abstract class IronOreDropMixin {
     	} else {
     		int chunkCount = 1 + world.getRandom().nextInt(3); // Scuffed way to make ore drop iron chunks for the time being needs changing
     		Block.dropStack(world, pos, new ItemStack(Items.RAW_IRON, chunkCount)); // Ore drops raw chunks when mined with a lower tool (smelting recipe will be changed)
-}
+			}
+
+		if (!state.isOf(Blocks.GOLD_ORE ) && !state.isOf(Blocks.DEEPSLATE_GOLD_ORE)) {
+			return; // Targets only Gold Ore and Deepslate Gold Ore
+		}
+
+		ci.cancel(); // Cancel vanilla drops
+
+		if (validTool) {
+			Block.dropStack(world, pos, new ItemStack(state.getBlock().asItem()));
+		} else {
+			int chunkCount = 1 + world.getRandom().nextInt(3); // Scuffed way to make ore drop iron chunks for the time being needs changing
+			Block.dropStack(world, pos, new ItemStack(Items.RAW_GOLD, chunkCount)); // Ore drops raw chunks when mined with a lower tool (smelting recipe will be changed)
+		}
         
     }
+
+
 
 }

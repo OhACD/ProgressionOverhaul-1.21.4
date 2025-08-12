@@ -8,5 +8,10 @@
   "item.poh.granite_pebbles": "Granite Pebbles",
   "item.poh.diorite_pebbles": "Diorite Pebbles",
   "item.poh.andesite_pebbles": "Andesite Pebbles",
-  "block.poh.clay_furnace": "Clay furnace"
+  "block.poh.clay_furnace": "Clay furnace",
+  "item.poh.iron_upgrade_smithing_template": "Iron Upgrade Smithing Template",
+  "item.poh.iron_upgrade_smithing_template.applies_to": "Iron Upgradable Items",
+  "item.poh.iron_upgrade_smithing_template.ingredients": "Iron Material",
+  "item.poh.iron_upgrade_smithing_template.base_slot_description": "Insert a diamond tool or armor",
+  "item.poh.iron_upgrade_smithing_template.additions_slot_description": "Insert iron ingot"
 }

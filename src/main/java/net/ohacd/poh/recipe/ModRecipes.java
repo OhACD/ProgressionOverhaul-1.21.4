@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 import net.ohacd.poh.ProgressionOverhaul;
 import net.ohacd.poh.recipe.custom.AxeCuttingRecipe;
 import net.ohacd.poh.recipe.custom.ClayFuranceRecipe;
+import net.ohacd.poh.recipe.custom.CountedSmithingRecipe;
 
 public class ModRecipes {
     public static final RecipeSerializer<ClayFuranceRecipe> ClAY_FURNACE_SERIALIZER = Registry.register(
@@ -24,13 +25,18 @@ public class ModRecipes {
     public static final RecipeSerializer<AxeCuttingRecipe> AXE_CUTTING_SERIALIZER = Registry.register(
             Registries.RECIPE_SERIALIZER, Identifier.of(ProgressionOverhaul.MOD_ID, "axe_cutting"),
             new AxeCuttingRecipe.Serializer());
-    public static final RecipeType<AxeCuttingRecipe> AXE_CUTTING_TYPE = Registry.register(
-            Registries.RECIPE_TYPE, Identifier.of(ProgressionOverhaul.MOD_ID, "axe_cutting"),
-            new RecipeType<AxeCuttingRecipe>() {
-                @Override
-                public String toString() {
-                    return "axe_cutting";
-                }});
+//    public static final RecipeType<AxeCuttingRecipe> AXE_CUTTING_TYPE = Registry.register(
+//            Registries.RECIPE_TYPE, Identifier.of(ProgressionOverhaul.MOD_ID, "axe_cutting"),
+//            new RecipeType<AxeCuttingRecipe>() {
+//                @Override
+//                public String toString() {
+//                    return "axe_cutting";
+//                }});
+
+    public static final RecipeSerializer<CountedSmithingRecipe> COUNTED_SMITHING_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(ProgressionOverhaul.MOD_ID, "counted_smithing"),
+            new CountedSmithingRecipe.Serializer());
+
 
     public static void registerRecipes() {
         ProgressionOverhaul.LOGGER.info("Registering Custom Recipes for " + ProgressionOverhaul.MOD_ID);
