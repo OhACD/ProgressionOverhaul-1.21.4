@@ -43,7 +43,8 @@
 	"custom": {
 		"cardinal-components": [
 			"poh:fatigue",
-			"poh:origin"
+			"poh:origin",
+			"poh:story_data"
 		],
 		"tick_components": [
 			"poh:origin"

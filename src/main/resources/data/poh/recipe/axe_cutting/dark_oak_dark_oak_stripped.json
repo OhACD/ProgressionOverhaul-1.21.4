@@ -1,0 +1,14 @@
+{
+  "type": "poh:axe_cutting",
+  "ingredient": "minecraft:dark_oak_log",
+  "axe": [
+    "minecraft:stone_axe",
+    "minecraft:iron_axe",
+    "minecraft:diamond_axe",
+    "minecraft:netherite_axe"
+  ],
+  "result": {
+    "id": "minecraft:stripped_dark_oak_log",
+    "count": 1
+  }
+}

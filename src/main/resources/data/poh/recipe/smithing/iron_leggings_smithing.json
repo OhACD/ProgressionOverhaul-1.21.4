@@ -1,6 +1,6 @@
 {
   "type": "poh:counted_smithing",
-  "template": "minecraft:netherite_upgrade_smithing_template",
+  "template": "poh:iron_upgrade_smithing_template",
   "base": "minecraft:chainmail_leggings",
   "addition": "minecraft:iron_ingot",
   "addition_count": 3,

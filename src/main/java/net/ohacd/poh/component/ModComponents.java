@@ -13,6 +13,9 @@ public class ModComponents implements EntityComponentInitializer {
     public static final ComponentKey<FatigueComponent> FATIGUE =
             ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "fatigue"), FatigueComponent.class);
 
+    public static final ComponentKey<PlayerStoryData> STORY_DATA =
+            ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "story_data"), PlayerStoryData.class);
+
     public static final ComponentKey<SaplingDropOriginComponent> ORIGIN =
             ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "origin"), SaplingDropOriginComponent.class);
 
@@ -22,5 +25,9 @@ public class ModComponents implements EntityComponentInitializer {
                 RespawnCopyStrategy.ALWAYS_COPY);
 
             entityComponentFactoryRegistry.registerFor(ItemEntity.class, ORIGIN, SaplingDropOriginImpl::new);
+
+        entityComponentFactoryRegistry.registerForPlayers(STORY_DATA,
+                player -> new PlayerStoryDataImpl(),
+                RespawnCopyStrategy.ALWAYS_COPY);
     }
 }

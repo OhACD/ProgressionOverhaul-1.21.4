@@ -1,0 +1,14 @@
+{
+  "type": "poh:axe_cutting",
+  "ingredient": "minecraft:crimson_stem",
+  "axe": [
+    "minecraft:stone_axe",
+    "minecraft:iron_axe",
+    "minecraft:diamond_axe",
+    "minecraft:netherite_axe"
+  ],
+  "result": {
+    "id": "minecraft:stripped_crimson_stem",
+    "count": 1
+  }
+}

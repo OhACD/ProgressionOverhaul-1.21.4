@@ -12,6 +12,6 @@
   "item.poh.iron_upgrade_smithing_template": "Iron Upgrade Smithing Template",
   "item.poh.iron_upgrade_smithing_template.applies_to": "Iron Upgradable Items",
   "item.poh.iron_upgrade_smithing_template.ingredients": "Iron Material",
-  "item.poh.iron_upgrade_smithing_template.base_slot_description": "Insert a diamond tool or armor",
+  "item.poh.iron_upgrade_smithing_template.base_slot_description": "Insert ChainMail armor",
   "item.poh.iron_upgrade_smithing_template.additions_slot_description": "Insert iron ingot"
 }
