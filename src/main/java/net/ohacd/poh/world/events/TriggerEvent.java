@@ -9,5 +9,4 @@ public record TriggerEvent(TriggerEventType type,
                            Identifier triggerId,
                            Identifier subjectId,
                            ServerPlayerEntity player,
-                           @Nullable BlockPos pos) {
-}
+                           @Nullable BlockPos pos) {}

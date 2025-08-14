@@ -6,6 +6,5 @@ import net.minecraft.util.Identifier;
 public interface Trigger {
     TriggerType type();
     Identifier id();
-
     TriggerResult check(ServerPlayerEntity player);
 }

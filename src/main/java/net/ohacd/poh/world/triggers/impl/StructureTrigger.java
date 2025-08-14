@@ -4,9 +4,16 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.Vec3d;
+import net.ohacd.poh.world.poi.POI;
+import net.ohacd.poh.world.poi.POIIndex;
+import net.ohacd.poh.world.poi.StructurePOI;
 import net.ohacd.poh.world.triggers.Trigger;
 import net.ohacd.poh.world.triggers.TriggerResult;
 import net.ohacd.poh.world.triggers.TriggerType;
+
+import java.util.List;
 
 public class StructureTrigger implements Trigger {
     private final Identifier cfgId;
@@ -19,31 +26,28 @@ public class StructureTrigger implements Trigger {
         this.radius = radius;
     }
 
-    @Override
-    public TriggerType type() {
-        return TriggerType.STRUCTURE;
-    }
-
-    @Override
-    public Identifier id() {
-        return cfgId;
-    }
+    @Override public TriggerType type() { return TriggerType.STRUCTURE; }
+    @Override public Identifier id() { return cfgId; }
 
     @Override
     public TriggerResult check(ServerPlayerEntity player) {
         ServerWorld world = player.getServerWorld();
         BlockPos pos = player.getBlockPos();
-        //
-         //
-        boolean near = isNearStructure(world, pos, structureId, radius);
-        if (near) return TriggerResult.hit(cfgId, structureId, pos);
-        return TriggerResult.miss();
-    }
 
-    private boolean isNearStructure(ServerWorld world, BlockPos pos, Identifier structureId, double radius) {
-        //
-         //
-         //
-        return false;
+        POIIndex index = POIIndex.get(world);
+        int rChunks = Math.max(1, (int) Math.ceil(radius / 16.0));
+        List<POI> nearby = index.nearby(world, new ChunkPos(pos), rChunks);
+
+        for (POI poi : nearby) {
+            if (!(poi instanceof StructurePOI s)) continue;
+            if (!s.structureId().equals(structureId)) continue;
+
+            // If inside structure bounds OR within radius of center → fire
+            if (s.bounds().contains(Vec3d.ofCenter(pos)) ||
+                    pos.getSquaredDistance(s.center()) <= (radius * radius)) {
+                return TriggerResult.hit(cfgId, structureId, s.center());
+            }
+        }
+        return TriggerResult.miss();
     }
 }

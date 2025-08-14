@@ -3,8 +3,10 @@ package net.ohacd.poh.world.poi;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import net.minecraft.block.Block;
+import net.minecraft.datafixer.DataFixTypes;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -17,12 +19,13 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.PersistentState;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class POIIndex extends PersistentState {
+    // Cache the Type once (avoids allocations on every getOrCreate)
+    private static final PersistentState.Type<POIIndex> TYPE =
+            new PersistentState.Type<>(POIIndex::new, POIIndex::fromNbt, DataFixTypes.LEVEL);
+
     private final Long2ObjectMap<List<Identifier>> byChunk = new Long2ObjectOpenHashMap<>();
     private final Map<Identifier, POI> all = new HashMap<>();
 
@@ -34,21 +37,32 @@ public final class POIIndex extends PersistentState {
     }
 
     public void remove(Identifier id) {
-        POI poi = all.remove(id); if (poi == null) return;
+        POI poi = all.remove(id);
+        if (poi == null) return;
         long ck = ChunkPos.toLong(poi.center());
         var list = byChunk.get(ck);
-        if (list != null) { list.remove(id); if (list.isEmpty()) byChunk.remove(ck); }
+        if (list != null) {
+            list.remove(id);
+            if (list.isEmpty()) byChunk.remove(ck);
+        }
         markDirty();
     }
 
+    public Optional<POI> get(Identifier id) { return Optional.ofNullable(all.get(id)); }
+
     public List<POI> nearby(ServerWorld world, ChunkPos center, int rChunks) {
         var found = new ArrayList<POI>();
-        for (int dx = -rChunks; dx <= rChunks; dx++) for (int dz = -rChunks; dz <= rChunks; dz++) {
-            long ck = ChunkPos.toLong(center.x + dx, center.z + dz);
-            var ids = byChunk.get(ck); if (ids == null) continue;
-            for (var id : ids) {
-                var poi = all.get(id);
-                if (poi != null && poi.dimension().equals(world.getRegistryKey())) found.add(poi); // ✅ equals
+        for (int dx = -rChunks; dx <= rChunks; dx++) {
+            for (int dz = -rChunks; dz <= rChunks; dz++) {
+                long ck = ChunkPos.toLong(center.x + dx, center.z + dz);
+                var ids = byChunk.get(ck);
+                if (ids == null) continue;
+                for (var id : ids) {
+                    var poi = all.get(id);
+                    if (poi != null && poi.dimension().equals(world.getRegistryKey())) {
+                        found.add(poi);
+                    }
+                }
             }
         }
         return found;
@@ -112,19 +126,16 @@ public final class POIIndex extends PersistentState {
         c.putDouble("maxX", b.maxX); c.putDouble("maxY", b.maxY); c.putDouble("maxZ", b.maxZ);
         return c;
     }
+
     public static Box boxFromNbt(NbtCompound c) {
-        return new Box(c.getDouble("minX"), c.getDouble("minY"), c.getDouble("minZ"),
-                c.getDouble("maxX"), c.getDouble("maxY"), c.getDouble("maxZ"));
+        return new Box(
+                c.getDouble("minX"), c.getDouble("minY"), c.getDouble("minZ"),
+                c.getDouble("maxX"), c.getDouble("maxY"), c.getDouble("maxZ")
+        );
     }
 
     public static POIIndex get(ServerWorld world) {
-        var storage = world.getPersistentStateManager();
-        // ✅ read from disk when present
-        return world.getPersistentStateManager().getOrCreate(
-                (nbt, regs) -> POIIndex.fromNbt(nbt, regs),
-                POIIndex::new,
-                        (nbt, regs) -> POIIndex.fromNbt(nbt, regs),
-                        "poh_poi_index").create(storage), // see alternative below if this overload is unavailable
-                "poh_poi_index");
+        // 1.21.x: use the Type-based API
+        return world.getPersistentStateManager().getOrCreate(TYPE, "poh_poi_index");
     }
 }

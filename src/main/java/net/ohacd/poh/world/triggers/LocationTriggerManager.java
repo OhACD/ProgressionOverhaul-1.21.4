@@ -9,20 +9,20 @@ import net.ohacd.poh.world.events.TriggerEventType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationTriggerManager implements ServerTickEvents.EndTick{
+public class LocationTriggerManager implements ServerTickEvents.EndTick {
     private final List<Trigger> triggers = new ArrayList<>();
     private final PlayerTriggerTracker movement = new PlayerTriggerTracker(4);
     private long lastTick = 0L;
 
-    public void register(Trigger trigger) {triggers.add(trigger); }
+    public void register(Trigger trigger) { triggers.add(trigger); }
 
     @Override
-    public void onEndTick(MinecraftServer minecraftServer) {
-        long trigger = minecraftServer.getOverworld().getTime();
-        if ((trigger - lastTick) < 20) return;
-        lastTick = trigger;
+    public void onEndTick(MinecraftServer server) {
+        long t = server.getOverworld().getTime();
+        if ((t - lastTick) < 20) return; // run checks roughly once per second
+        lastTick = t;
 
-        var players = minecraftServer.getPlayerManager().getPlayerList();
+        var players = server.getPlayerManager().getPlayerList();
         for (var player : players) {
             if (!movement.movedEnough(player)) continue;
 
@@ -35,12 +35,8 @@ public class LocationTriggerManager implements ServerTickEvents.EndTick{
                         case ZONE -> TriggerEventType.ENTER_ZONE;
                     };
                     TriggerEventDispatcher.post(new TriggerEvent(
-                            type,
-                            result.triggerId(),
-                            result.subjectId(),
-                            player,
-                            result.subjectPos()));
-                    break;
+                            type, result.triggerId(), result.subjectId(), player, result.subjectPos()));
+                    break; // fire at most one per scan cycle per player
                 }
             }
         }

@@ -15,19 +15,10 @@ public final class ZoneTrigger implements Trigger {
     private final TriggerZone zone;
     private final Set<UUID> inside = new HashSet<>();
 
-    public ZoneTrigger(TriggerZone zone) {
-        this.zone = zone; }
+    public ZoneTrigger(TriggerZone zone) { this.zone = zone; }
 
-
-    @Override
-    public TriggerType type() {
-        return TriggerType.ZONE;
-    }
-
-    @Override
-    public Identifier id() {
-        return zone.id();
-    }
+    @Override public TriggerType type() { return TriggerType.ZONE; }
+    @Override public Identifier id() { return zone.id(); }
 
     @Override
     public TriggerResult check(ServerPlayerEntity player) {

@@ -31,6 +31,7 @@ public class BlockProximityTrigger implements Trigger {
         BlockPos center = player.getBlockPos();
         ServerWorld world = player.getServerWorld();
         BlockPos.Mutable m = new BlockPos.Mutable();
+
         for (int x = -radius; x <= radius; x++)
             for (int y = -radius; y <= radius; y++)
                 for (int z = -radius; z <= radius; z++) {

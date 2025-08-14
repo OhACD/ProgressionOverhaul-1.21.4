@@ -11,6 +11,4 @@ public record StructurePOI(Identifier id,
                            Box bounds,
                            BlockPos center,
                            POIMetadata meta,
-                           Identifier structureId) implements POI {
-
-}
+                           Identifier structureId) implements POI {}

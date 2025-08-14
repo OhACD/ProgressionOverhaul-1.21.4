@@ -12,13 +12,6 @@ public record BlockPOI(Identifier id,
                        BlockPos pos,
                        POIMetadata meta,
                        Block block) implements POI {
-    @Override
-    public Box bounds() {
-        return new Box(pos);
-    }
-
-    @Override
-    public BlockPos center() {
-        return pos;
-    }
+    @Override public Box bounds() { return new Box(pos); }
+    @Override public BlockPos center() { return pos; }
 }

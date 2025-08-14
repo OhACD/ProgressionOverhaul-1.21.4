@@ -10,6 +10,6 @@ public record TriggerZone(Identifier id,
                           RegistryKey<World> dimension,
                           Box box) {
     public boolean contains(ServerPlayerEntity player) {
-        return player.getWorld().getRegistryKey() == dimension && box.contains(player.getPos());
+        return player.getWorld().getRegistryKey().equals(dimension) && box.contains(player.getPos());
     }
 }
