@@ -18,6 +18,6 @@ public class ProgressionOverhaul implements ModInitializer {
 	public void onInitialize() {
 		ModRegistries.registerAll();    // items, blocks, recipes, etc.
 		ModPOIDetectors.registerAll();  // detectors for POI indexing
-		ModTriggers.registerAll();
+		ModTriggers.registerAll();		// triggers
 	}
 }

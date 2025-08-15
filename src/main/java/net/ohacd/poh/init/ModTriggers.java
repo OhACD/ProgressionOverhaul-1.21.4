@@ -12,7 +12,7 @@ import net.ohacd.poh.world.triggers.impl.BlockProximityTrigger;
 import net.ohacd.poh.world.triggers.impl.StructureTrigger;
 import net.ohacd.poh.world.triggers.impl.ZoneTrigger;
 import net.ohacd.poh.world.triggers.zones.TriggerZone;
-import net.ohacd.test.LoggingTriggerListener;
+import net.ohacd.poh.test.LoggingTriggerListener;
 
 import java.util.Set;
 
@@ -41,6 +41,7 @@ public final class ModTriggers {
                         new BlockPos(-32, -64, -32).toCenterPos(),
                         new BlockPos(32, 384, 32).toCenterPos()
                 )        )));
+
 
         TriggerEventDispatcher.register(new LoggingTriggerListener());
     }
