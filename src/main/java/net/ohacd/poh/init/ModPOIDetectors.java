@@ -4,7 +4,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.ohacd.poh.ProgressionOverhaul;
 import net.ohacd.poh.world.WorldHooks;
-import net.ohacd.poh.world.listeners.CampfireFatigueManager;
 import net.ohacd.poh.world.poi.detector.BlockDetector;
 import net.ohacd.poh.world.poi.detector.StructureDetector;
 
@@ -24,7 +23,5 @@ public final class ModPOIDetectors {
                         Identifier.of("minecraft:ancient_city")
                 )
         ));
-
-        CampfireFatigueManager.register();
     }
 }

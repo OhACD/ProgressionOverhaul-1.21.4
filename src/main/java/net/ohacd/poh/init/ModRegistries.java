@@ -11,7 +11,6 @@ import net.ohacd.poh.screen.ModScreenHandlers;
 import net.ohacd.poh.util.ModLootTableModifiers;
 import net.ohacd.poh.util.ModTickHandlers;
 import net.ohacd.poh.world.WorldHooks;
-import net.ohacd.poh.world.listeners.CampfireFatigueManager;
 
 public final class ModRegistries {
     public static void registerAll() {

@@ -1,12 +1,15 @@
 package net.ohacd.poh.init;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CampfireBlock;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.ohacd.poh.ProgressionOverhaul;
 import net.ohacd.poh.world.events.TriggerEventDispatcher;
+import net.ohacd.poh.world.listeners.CampfireWarmthManager;
 import net.ohacd.poh.world.triggers.LocationTriggerManager;
 import net.ohacd.poh.world.triggers.impl.BlockProximityTrigger;
 import net.ohacd.poh.world.triggers.impl.StructureTrigger;
@@ -28,6 +31,13 @@ public final class ModTriggers {
                 6
         ));
 
+        MANAGER.register(new BlockProximityTrigger(
+                ProgressionOverhaul.id("near_campfire"),
+                Set.of(Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE),
+                6,
+                state -> state.get(CampfireBlock.LIT)
+        ).withMovement(false));
+
         MANAGER.register(new StructureTrigger(
                 ProgressionOverhaul.id("near_plains_village"),
                 Identifier.of("minecraft:village_plains"),
@@ -44,5 +54,8 @@ public final class ModTriggers {
 
 
         TriggerEventDispatcher.register(new LoggingTriggerListener());
+        TriggerEventDispatcher.register(new CampfireWarmthManager());
+        CampfireWarmthManager.register();
+
     }
 }

@@ -21,7 +21,7 @@ public class BlockProximityTrigger implements Trigger {
     private final Predicate<BlockState> stateFilter;
 
     public BlockProximityTrigger(Identifier cfgId, Set<Block> blocks, int radius) {
-        this(cfgId, blocks, radius, state -> true); // default: accept all
+        this(cfgId, blocks, radius, state -> true);
     }
 
     public BlockProximityTrigger(Identifier cfgId, Set<Block> blocks, int radius, Predicate<BlockState> stateFilter) {
@@ -31,8 +31,12 @@ public class BlockProximityTrigger implements Trigger {
         this.stateFilter = stateFilter;
     }
 
-    @Override public TriggerType type() { return TriggerType.BLOCK_PROXIMITY; }
-    @Override public Identifier id() { return cfgId; }
+    @Override public TriggerType type() {
+        return TriggerType.BLOCK_PROXIMITY;
+    }
+    @Override public Identifier id() {
+        return cfgId;
+    }
 
     @Override
     public TriggerResult check(ServerPlayerEntity player) {
