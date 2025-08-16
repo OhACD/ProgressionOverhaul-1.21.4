@@ -62,10 +62,10 @@ public final class WorldHooks {
             if (optionalWorld.isPresent()) {
                 ServerWorld world = optionalWorld.get();
                 server.execute(() -> {
-                    // Heavy operations here (e.g., POI indexing)
+                    // Heavy operations here
                 });
             } else {
-                // Handle missing world (e.g., log a warning)
+                // Handle missing world 
                 System.out.println("Overworld not found!");
             }
         });
