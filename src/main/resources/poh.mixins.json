@@ -7,7 +7,6 @@
     "IronOreDropMixin",
     "LeavesDropMixin",
     "SlowToolsMixin",
-    "SmithingScreenHandlerAccessor",
     "SmithingScreenHandlerMixin",
     "WoodToolMaterialMixin"
   ],
