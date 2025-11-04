@@ -1,16 +1,19 @@
 {
-	"required": true,
-	"package": "net.ohacd.poh.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"IronOreDropMixin",
-		"SlowToolsMixin",
-		"WoodToolMaterialMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "net.ohacd.poh.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CraftingResultSlotMixin",
+    "IronOreDropMixin",
+    "LeavesDropMixin",
+    "SlowToolsMixin",
+    "SmithingScreenHandlerMixin",
+    "WoodToolMaterialMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }

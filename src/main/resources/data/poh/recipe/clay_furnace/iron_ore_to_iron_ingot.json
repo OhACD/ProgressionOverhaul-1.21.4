@@ -1,0 +1,7 @@
+{
+  "type": "poh:clay_furnace",
+  "ingredient": "minecraft:iron_ore",
+  "result": {
+    "id": "minecraft:iron_ingot"
+  }
+}

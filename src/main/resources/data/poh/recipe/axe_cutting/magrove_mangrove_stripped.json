@@ -1,0 +1,14 @@
+{
+  "type": "poh:axe_cutting",
+  "ingredient": "minecraft:mangrove_log",
+  "axe": [
+    "minecraft:stone_axe",
+    "minecraft:iron_axe",
+    "minecraft:diamond_axe",
+    "minecraft:netherite_axe"
+  ],
+  "result": {
+    "id": "minecraft:stripped_mangrove_log",
+    "count": 1
+  }
+}

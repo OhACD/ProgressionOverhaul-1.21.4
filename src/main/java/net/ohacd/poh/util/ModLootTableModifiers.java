@@ -2,7 +2,6 @@ package net.ohacd.poh.util;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.*;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
@@ -18,6 +17,13 @@ public class ModLootTableModifiers {
     private static final Identifier DIRT_ID = Identifier.of("minecraft", "blocks/dirt");
     private static final Identifier MUD_ID = Identifier.of("minecraft", "blocks/mud");
     private static final Identifier GRAVEL_ID = Identifier.of("minecraft", "blocks/gravel");
+    private static final Identifier BLACKSMITH_CHEST = Identifier.of("minecraft", "chests/village/village_weaponsmith");
+    private static final Identifier RUINED_PORTAL = Identifier.of("minecraft", "chests/ruined_portal");
+    private static final Identifier SHIPWRECK_TREASURE = Identifier.of("minecraft", "chests/shipwreck_treasure");
+    private static final Identifier STRONGHOLD_LIBRARY = Identifier.of("minecraft", "chests/stronghold_library");
+    private static final Identifier ABANDONED_MINESHAFT = Identifier.of("minecraft", "chests/abandoned_mineshaft");
+    private static final Identifier BURIED_TREASURE = Identifier.of("minecraft", "chests/buried_treasure");
+    private static final Identifier PILLAGER_OUTPOST = Identifier.of("minecraft", "chests/pillager_outpost");
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
@@ -78,6 +84,90 @@ public class ModLootTableModifiers {
                 tableBuilder.pool(poolBuilder.build());
             }
         });
+
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+            if(BLACKSMITH_CHEST.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .with(ItemEntry.builder(ModItems.IRON_UPGRADE_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)));
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+
+        });
+
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+            if(PILLAGER_OUTPOST.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.5F))
+                        .with(ItemEntry.builder(ModItems.IRON_UPGRADE_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)));
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+            if(ABANDONED_MINESHAFT.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.2F))
+                        .with(ItemEntry.builder(ModItems.IRON_UPGRADE_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)));
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
+
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+            if(BURIED_TREASURE.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.2F))
+                        .with(ItemEntry.builder(ModItems.IRON_UPGRADE_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)));
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
+
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+            if(SHIPWRECK_TREASURE.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.2F))
+                        .with(ItemEntry.builder(ModItems.IRON_UPGRADE_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)));
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
+
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+            if(RUINED_PORTAL.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.2F))
+                        .with(ItemEntry.builder(ModItems.IRON_UPGRADE_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)));
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
+
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+            if(STRONGHOLD_LIBRARY.equals(key.getValue())) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.2F))
+                        .with(ItemEntry.builder(ModItems.IRON_UPGRADE_TEMPLATE))
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)));
+
+                tableBuilder.pool(poolBuilder.build());
+            }
+        });
+
     }
 
     public static void replaceLootTables() {

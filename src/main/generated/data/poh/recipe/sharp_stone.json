@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "#poh:pebbles_tag",
+    "#poh:pebbles_tag"
+  ],
+  "result": {
+    "count": 1,
+    "id": "poh:sharp_stone"
+  }
+}

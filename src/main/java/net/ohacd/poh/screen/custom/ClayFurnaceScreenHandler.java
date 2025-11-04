@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.ohacd.poh.block.entity.custom.ClayFurnaceBlockEntity;
@@ -19,7 +20,7 @@ public class ClayFurnaceScreenHandler extends ScreenHandler {
     public final ClayFurnaceBlockEntity blockEntity;
 
     public ClayFurnaceScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(2));
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
     }
 
     public ClayFurnaceScreenHandler(int syncId, PlayerInventory playerInventory,
@@ -29,10 +30,14 @@ public class ClayFurnaceScreenHandler extends ScreenHandler {
         this.blockEntity = ((ClayFurnaceBlockEntity) blockEntity);
         this.propertyDelegate = arrayPropertyDelegate;
 
-        this.addSlot(new Slot(inventory, 0, 53, 34));
-        this.addSlot(new Slot(inventory, 1, 104, 34));
+        this.addSlot(new Slot(inventory, 0, 56, 17));
+        this.addSlot(new Slot(inventory, 1, 56, 53));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 2, 116, 35));
 
-        addProperties(arrayPropertyDelegate);
+        addPlayerInventory(playerInventory);
+        addPlayerHotbar(playerInventory);
+
+        addProperties(propertyDelegate);
     }
 
     public boolean isCrafting() {
@@ -45,6 +50,12 @@ public class ClayFurnaceScreenHandler extends ScreenHandler {
         int arrowPixelSize = 24; // This is the width in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
+    }
+
+    public int getScaledFuelProgress() {
+        int burnTime     = propertyDelegate.get(2);   // remaining
+        int totalBurnMax = 300;                       // vanilla default; pull dynamically if you prefer
+        return burnTime > 0 ? burnTime * 14 / totalBurnMax : 0;  // 14 px high flame
     }
 
     @Override

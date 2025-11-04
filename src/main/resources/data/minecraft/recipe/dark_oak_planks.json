@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:stripped_dark_oak_log"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft:dark_oak_planks"
+  }
+}

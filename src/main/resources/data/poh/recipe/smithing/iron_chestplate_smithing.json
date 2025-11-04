@@ -1,0 +1,11 @@
+{
+  "type": "poh:counted_smithing",
+  "template": "poh:iron_upgrade_smithing_template",
+  "base": "minecraft:chainmail_chestplate",
+  "addition": "minecraft:iron_ingot",
+  "addition_count": 4,
+  "result": {
+    "id": "minecraft:iron_chestplate",
+    "count": 1
+  }
+}

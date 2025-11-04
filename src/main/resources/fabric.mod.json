@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "poh",
-	"version": "Alpha-0.1.1",
+	"version": "Beta(0.1.4)",
 	"name": "Progression Overhaul",
 	"description": "A Complete faithful rework to minecraft progression!",
 	"authors": [
@@ -11,15 +11,21 @@
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			"net.ohacd.poh.ProgressionOverhaul"
 		],
+		"client": [
+			"net.ohacd.poh.ProgressionOverhaulClient"
+		],
 		"fabric-datagen": [
 			"net.ohacd.poh.ProgressionOverhaulDataGenerator"
+		],
+		"cardinal-components": [
+			"net.ohacd.poh.component.ModComponents"
 		]
 	},
 	"mixins": [
@@ -33,5 +39,15 @@
 	},
 	"suggests": {
 		"another-mod": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"poh:fatigue",
+			"poh:origin",
+			"poh:story_data"
+		],
+		"tick_components": [
+			"poh:origin"
+		]
 	}
 }

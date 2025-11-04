@@ -2,12 +2,16 @@ package net.ohacd.poh.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.ohacd.poh.ProgressionOverhaul;
+import net.ohacd.poh.item.custom.ModSmithingTemplateUtils;
+import net.ohacd.poh.item.custom.ModSmithingTemplates;
 import net.ohacd.poh.material.ModToolMaterial;
 
 import java.util.function.Function;
@@ -29,6 +33,13 @@ public class ModItems {
             settings -> new PickaxeItem(ModToolMaterial.SHARP_TOOL_MATERIAL, 0.5f, -1.8f, settings),
             new Item.Settings()
     );
+
+    public static final Item IRON_UPGRADE_TEMPLATE = registerItem(
+            "iron_upgrade_smithing_template",
+            ModSmithingTemplates::ofIronUpgrade,
+            new Item.Settings()
+    );
+
 
     private static Item registerItem(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
         // Create the item key.

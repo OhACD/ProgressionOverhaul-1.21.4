@@ -1,0 +1,33 @@
+package net.ohacd.poh.component;
+
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.util.Identifier;
+import net.ohacd.poh.ProgressionOverhaul;
+import org.ladysnake.cca.api.v3.component.ComponentKey;
+import org.ladysnake.cca.api.v3.component.ComponentRegistry;
+import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
+import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
+import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
+
+public class ModComponents implements EntityComponentInitializer {
+    public static final ComponentKey<FatigueComponent> FATIGUE =
+            ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "fatigue"), FatigueComponent.class);
+
+    public static final ComponentKey<PlayerStoryData> STORY_DATA =
+            ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "story_data"), PlayerStoryData.class);
+
+    public static final ComponentKey<SaplingDropOriginComponent> ORIGIN =
+            ComponentRegistry.getOrCreate(Identifier.of(ProgressionOverhaul.MOD_ID, "origin"), SaplingDropOriginComponent.class);
+
+    @Override
+    public void registerEntityComponentFactories(EntityComponentFactoryRegistry entityComponentFactoryRegistry) {
+        entityComponentFactoryRegistry.registerForPlayers(FATIGUE, playerEntity -> new FatigueComponentImpl(),
+                RespawnCopyStrategy.ALWAYS_COPY);
+
+            entityComponentFactoryRegistry.registerFor(ItemEntity.class, ORIGIN, SaplingDropOriginImpl::new);
+
+        entityComponentFactoryRegistry.registerForPlayers(STORY_DATA,
+                player -> new PlayerStoryDataImpl(),
+                RespawnCopyStrategy.ALWAYS_COPY);
+    }
+}

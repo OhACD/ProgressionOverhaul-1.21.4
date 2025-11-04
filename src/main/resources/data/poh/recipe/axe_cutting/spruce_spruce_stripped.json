@@ -1,0 +1,14 @@
+{
+  "type": "poh:axe_cutting",
+  "ingredient": "minecraft:spruce_log",
+  "axe": [
+    "minecraft:stone_axe",
+    "minecraft:iron_axe",
+    "minecraft:diamond_axe",
+    "minecraft:netherite_axe"
+  ],
+  "result": {
+    "id": "minecraft:stripped_spruce_log",
+    "count": 1
+  }
+}
