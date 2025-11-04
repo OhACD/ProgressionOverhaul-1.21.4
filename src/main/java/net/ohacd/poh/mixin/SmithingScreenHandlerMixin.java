@@ -1,15 +1,15 @@
 package net.ohacd.poh.mixin;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmithingRecipe;
 import net.minecraft.recipe.input.SmithingRecipeInput;
 import net.minecraft.screen.SmithingScreenHandler;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
 import net.ohacd.poh.recipe.custom.CountedSmithingRecipe;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,41 +19,35 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Optional;
 
 @Mixin(SmithingScreenHandler.class)
-public abstract class SmithingScreenHandlerMixin {
+public class SmithingScreenHandlerMixin {
 
-    @Inject(
-            method = "onTakeOutput",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/screen/SmithingScreenHandler;decrementStack(I)V",
-                    ordinal = 2 // the third decrementStack call (slot 2)
-            ),
-            cancellable = true
-    )
-    private void modifyAdditionDecrement(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
-        SmithingScreenHandler self = (SmithingScreenHandler) (Object) this;
+    @Inject(method = "onTakeOutput", at = @At("HEAD"))
+    private void poh$onTakeOutput(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
+        SmithingScreenHandler handler = (SmithingScreenHandler) (Object) this;
+        World world = player.getWorld();
 
-        // Create a smithing recipe input from the slots
+        if (!(world instanceof ServerWorld serverWorld)) return;
+
+        // Create SmithingRecipeInput manually
         SmithingRecipeInput input = new SmithingRecipeInput(
-                self.getSlot(0).getStack(), // template
-                self.getSlot(1).getStack(), // base
-                self.getSlot(2).getStack()  // addition
+                handler.getSlot(0).getStack(), // template
+                handler.getSlot(1).getStack(), // base
+                handler.getSlot(2).getStack()  // addition
         );
 
-        if (player.getWorld() instanceof ServerWorld serverWorld) {
-            Optional<RecipeEntry<SmithingRecipe>> optional =
-                    serverWorld.getRecipeManager()
-                            .getFirstMatch(RecipeType.SMITHING, input, serverWorld);
+        // Get the recipe entry
+        Optional<RecipeEntry<SmithingRecipe>> recipeOpt =
+                serverWorld.getRecipeManager().getFirstMatch(RecipeType.SMITHING, input, world);
 
-            if (optional.isPresent() && optional.get().value() instanceof CountedSmithingRecipe custom) {
-                int countToRemove = custom.getAdditionCount();
-
-                self.getSlot(2).getStack().decrement(countToRemove);
-                self.getSlot(1).getStack().decrement(1);
-                self.getSlot(0).getStack().decrement(1);
-
-                ci.cancel();
+        // Unwrap and handle CountedSmithingRecipe
+        recipeOpt.map(RecipeEntry::value).ifPresent(recipe -> {
+            if (recipe instanceof CountedSmithingRecipe counted) {
+                Slot additionSlot = handler.getSlot(2);
+                ItemStack additionStack = additionSlot.getStack();
+                if (!additionStack.isEmpty()) {
+                    additionStack.decrement(counted.getAdditionCount());
+                }
             }
-        }
+        });
     }
 }

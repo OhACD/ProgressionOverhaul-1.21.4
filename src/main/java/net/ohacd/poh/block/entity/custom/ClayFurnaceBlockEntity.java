@@ -114,7 +114,10 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         super.readNbt(nbt, registries);
         progress = nbt.getInt("clay_furnace.progress");
-        maxProgress = nbt.getInt("clay_furnace.maxProgress");
+        // Keep key consistent with writeNbt ("clay_furnace.max_progress"). Fallback supports old saves.
+        maxProgress = nbt.contains("clay_furnace.max_progress")
+                ? nbt.getInt("clay_furnace.max_progress")
+                : nbt.getInt("clay_furnace.maxProgress");
         burnTime = nbt.getInt("burnTime");
         fuelTime = nbt.getInt("fuelTime");
     }
@@ -154,9 +157,12 @@ public class ClayFurnaceBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private Optional<RecipeEntry<ClayFuranceRecipe>> getCurrentRecipe() {
-        return ((ServerWorld) this.getWorld()).getRecipeManager()
-                .getFirstMatch(ModRecipes.CLAY_FURNACE_TYPE, new ClayFurnaceRecipeInput(inventory.get(INPUT_SLOT)),
-                        this.getWorld());
+        World world = this.getWorld();
+        if (!(world instanceof ServerWorld serverWorld)) {
+            return Optional.empty();
+        }
+        return serverWorld.getRecipeManager()
+                .getFirstMatch(ModRecipes.CLAY_FURNACE_TYPE, new ClayFurnaceRecipeInput(inventory.get(INPUT_SLOT)), serverWorld);
     }
 
 //    //List of Items that can be used as fuel

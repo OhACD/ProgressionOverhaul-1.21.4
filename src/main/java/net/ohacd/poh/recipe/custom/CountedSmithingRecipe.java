@@ -10,6 +10,8 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.input.SmithingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.SmithingScreenHandler;
 import net.minecraft.world.World;
 import net.ohacd.poh.ProgressionOverhaul;
 import net.ohacd.poh.recipe.ModRecipes;
