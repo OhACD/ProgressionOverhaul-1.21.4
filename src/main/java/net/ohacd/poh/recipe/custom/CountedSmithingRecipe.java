@@ -42,6 +42,7 @@ public class CountedSmithingRecipe extends SmithingTransformRecipe {
 
     public ItemStack getResult() {
         return result.copy();
+        // Hello Curious snooper ;)
     }
 
     @Override
